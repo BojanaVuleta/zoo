@@ -32,7 +32,7 @@ const listOfAnimals = [
             <div key={index}>
               {animal.name}
               {animal.species}
-              {animal.date_of_birth}
+              {animal.date_of_birth ? animal.date_of_birth : "Nepoznato"}
             </div>
           ))}
         </div>
