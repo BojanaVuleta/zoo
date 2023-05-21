@@ -29,6 +29,7 @@ const listOfAnimals = [
 const AnimalList = () => {
   //IDE HOOK
   const [animals, setAnimals] = useState(listOfAnimals);
+  const [formData, setFormData] = useState({ name: '', species: '',  date_of_birth:'' });
 
   const onRemove = (name) => {
     setAnimals((prevState) =>
@@ -44,8 +45,31 @@ const AnimalList = () => {
     ]);
   };
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setAnimals([...animals, formData]);
+    setFormData({name: "", species: "", date_of_birth: ""});
+  };
+  
   return (
+    
     <div>
+        <form>
+            <label htmlFor="name">Name</label>
+            <input onChange={handleChange} name="name" type="text" placeholder="Ime zivotinje"></input>
+            <label htmlFor="species">Species</label>
+            <input onChange={handleChange} name="species" type="text" placeholder="Vrsta zivotinje"></input>
+            <label htmlFor="date_of_birth">Date of birth</label>
+            <input onChange={handleChange} name="date_of_birth" type="date" placeholder="datum rodjenaj"></input>
+            <button onClick={handleSubmit}>Dodaj zivotinju</button>
+        </form>
       <table>
         <thead>
           <tr>
