@@ -9,6 +9,7 @@ const listOfAnimals = [
   {
     name: "delfin",
     species: "mamel",
+    sektor:"mamel"
   },
   {
     name: "koza",
@@ -57,6 +58,13 @@ const AnimalList = () => {
     setAnimals([...animals, formData]);
     setFormData({name: "", species: "", date_of_birth: "", sektor:""});
   };
+
+  const onSektorKlck=(sektor)=>{
+    const animalsInCategory = animals.filter(animal => animal.sektor === sektor);
+    const animalNames = animalsInCategory.map(animal => animal.name);
+    alert(`Animals in category ${sektor}: ${animalNames.join(', ')}`);
+
+  }
   
   return (
     
@@ -101,6 +109,37 @@ const AnimalList = () => {
               </td>
             </tr>
           ))}
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Ime sektora</th>
+            <th>Zivotinje sektora</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+            <tr>
+              <td>Zmije</td>
+              <td>
+                <button onClick={() => onSektorKlck('zmije')}>Sektor</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Ptice</td>
+              <td>
+                <button onClick={() => onSektorKlck('ptice')}>Sektor</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Mamel</td>
+              <td>
+                <button onClick={() => onSektorKlck('mamel')}>Sektor</button>
+              </td>
+            </tr>
+        
         </tbody>
       </table>
     </div>
