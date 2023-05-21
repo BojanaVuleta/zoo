@@ -29,7 +29,7 @@ const listOfAnimals = [
 const AnimalList = () => {
   //IDE HOOK
   const [animals, setAnimals] = useState(listOfAnimals);
-  const [formData, setFormData] = useState({ name: '', species: '',  date_of_birth:'' });
+  const [formData, setFormData] = useState({ name: '', species: '',  date_of_birth:'',sektor:"" });
 
   const onRemove = (name) => {
     setAnimals((prevState) =>
@@ -55,7 +55,7 @@ const AnimalList = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAnimals([...animals, formData]);
-    setFormData({name: "", species: "", date_of_birth: ""});
+    setFormData({name: "", species: "", date_of_birth: "", sektor:""});
   };
   
   return (
@@ -68,7 +68,14 @@ const AnimalList = () => {
             <input onChange={handleChange} name="species" type="text" placeholder="Vrsta zivotinje"></input>
             <label htmlFor="date_of_birth">Date of birth</label>
             <input onChange={handleChange} name="date_of_birth" type="date" placeholder="datum rodjenaj"></input>
+            <select name="sektor" onChange={handleChange}>
+                <option value="ptice">Ptice</option>
+                <option value="zmije">Zmije</option>
+                <option value="mamel">Mamel</option>
+            </select>
             <button onClick={handleSubmit}>Dodaj zivotinju</button>
+            
+            
         </form>
       <table>
         <thead>
@@ -76,6 +83,7 @@ const AnimalList = () => {
             <th>Ime zivotinje</th>
             <th>Vrsta zivotinje</th>
             <th>Datum zivotinje</th>
+            <th>Sektor</th>
             <th>Remove</th>
           </tr>
         </thead>
@@ -86,6 +94,7 @@ const AnimalList = () => {
               <td>{animal.name}</td>
               <td>{animal.species}</td>
               <td>{animal.date_of_birth}</td>
+              <td>{animal.sektor}</td>
               <td>
                 <button onClick={() => onRemove(animal.name)}>Remove</button>
                 <button onClick={() => onTop(index)}>Move to top</button>
